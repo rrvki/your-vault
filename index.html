@@ -203,4 +203,18 @@ function applyTheme(theme){document.documentElement.dataset.theme=theme;themeTog
 let savedTheme='dark';try{savedTheme=localStorage.getItem('yourVaultTheme')||'dark'}catch{}applyTheme(savedTheme);
 themeToggle.addEventListener('click',()=>applyTheme(document.documentElement.dataset.theme==='light'?'dark':'light'));
 
+<!-- YOUR VAULT: Supabase connection -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://dagnzjrjyoltoshtruhd.supabase.co/rest/v1/";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_wZOqcLaQwt0iWgZaS3kVqQ_SS75sdlT";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  console.log("YOUR VAULT: Supabase client initialized.");
+</script>
+
 </script></body></html>
