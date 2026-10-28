@@ -203,6 +203,9 @@ function applyTheme(theme){document.documentElement.dataset.theme=theme;themeTog
 let savedTheme='dark';try{savedTheme=localStorage.getItem('yourVaultTheme')||'dark'}catch{}applyTheme(savedTheme);
 themeToggle.addEventListener('click',()=>applyTheme(document.documentElement.dataset.theme==='light'?'dark':'light'));
 
+
+</script>
+
 <!-- YOUR VAULT: Supabase connection -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -213,6 +216,11 @@ themeToggle.addEventListener('click',()=>applyTheme(document.documentElement.dat
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
   );
+
+  console.log("YOUR VAULT: Supabase client initialized.");
+</script>
+</body>
+</html>
 
   console.log("YOUR VAULT: Supabase client initialized.");
 </script>
