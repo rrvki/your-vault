@@ -204,10 +204,11 @@ let savedTheme='dark';try{savedTheme=localStorage.getItem('yourVaultTheme')||'da
 themeToggle.addEventListener('click',()=>applyTheme(document.documentElement.dataset.theme==='light'?'dark':'light'));
 
 
+
 </script>
 
 <!-- YOUR VAULT: Supabase connection -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
   const SUPABASE_URL = "https://dagnzjrjyoltoshtruhd.supabase.co";
   const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_wZOqcLaQwt0iWgZaS3kVqQ_SS75sdlT";
@@ -221,8 +222,3 @@ themeToggle.addEventListener('click',()=>applyTheme(document.documentElement.dat
 </script>
 </body>
 </html>
-
-  console.log("YOUR VAULT: Supabase client initialized.");
-</script>
-
-</script></body></html>
