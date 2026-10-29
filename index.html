@@ -161,6 +161,62 @@ body{background:#090a0d;font-size:13px;letter-spacing:.01em}
 </div>
 
  <section class="page" id="page-profile"><div class="heading"><div><div class="eyebrow">Make it yours</div><h1>Player <span style="color:var(--red)">profile.</span></h1><p>Your collection, your identity. Build a profile worth showing off.</p></div><button class="btn" id="saveProfile">Save profile</button></div><div class="profile-grid"><div class="profile-card"><div class="profile-banner"></div><div class="profile-avatar" id="profileAvatar">Y</div><h2 id="profileNameDisplay">Your Player</h2><div class="handle" id="profileHandleDisplay">@yourtag · Vault member</div><p>Collecting the rarest drops, one pack at a time.</p><div class="profile-numbers"><div><strong id="profileUnique">0</strong><small>UNIQUE CARDS</small></div><div><strong id="profileBadges">1</strong><small>BADGES</small></div><div><strong id="profilePercent">0%</strong><small>COMPLETE</small></div></div><div class="notice">Local demo: profile edits are saved in this browser only. No Riot login is required; online accounts and public profile links will be added in a later step.</div></div><div style="display:grid;gap:18px;align-content:start"><div class="panel"><div class="section-title"><h2>Profile settings</h2><span>Customize your player card</span></div><label class="field" for="displayName">Display name</label><input class="input" id="displayName" maxlength="24" value="Your Player"><label class="field" for="handleInput">Player tag</label><input class="input" id="handleInput" maxlength="20" value="yourtag" placeholder="yourtag"><label class="field" for="bioInput">Bio</label><input class="input" id="bioInput" maxlength="90" value="Collecting the rarest drops, one pack at a time."><label class="field">Featured crosshair</label><div class="crosshair-row"><button class="crosshair selected" data-crosshair="Classic"><svg viewBox="0 0 40 40"><path d="M20 5v10M20 25v10M5 20h10M25 20h10"/><circle cx="20" cy="20" r="2"/></svg><small>Classic</small></button><button class="crosshair" data-crosshair="Dot"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="2.5" fill="#e8e8ed" stroke="none"/></svg><small>Dot</small></button><button class="crosshair" data-crosshair="Precision"><svg viewBox="0 0 40 40"><path d="M20 3v12M20 25v12M3 20h12M25 20h12"/><circle cx="20" cy="20" r="6"/></svg><small>Precision</small></button></div><div class="crosshair-import" style="margin-top:16px"><label class="field" for="crosshairCodeInput">Import a Valorant crosshair code</label><textarea class="input" id="crosshairCodeInput" rows="3" placeholder="Paste your Valorant crosshair code here (starts with 0;P;...)" spellcheck="false"></textarea><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="importCrosshairBtn" type="button">Import crosshair code</button><button class="btn ghost" id="copyCrosshairBtn" type="button">Copy saved code</button></div><div class="crosshair-preview" id="crosshairPreview"><small id="crosshairStatus">No custom code imported yet</small></div><p style="font-size:11px;color:var(--muted);line-height:1.6;margin:0">Paste the code copied from VALORANT. YOUR VAULT stores and displays the code; it does not automatically change your in-game settings.</p></div></div><div class="panel"><div class="section-title"><h2>Achievement badges</h2><span id="badgeCount">1 / 5 unlocked</span></div><div class="badge-grid" id="badgeGrid"></div></div><div class="panel"><div class="section-title"><h2>Owned skins</h2><span class="skin-count" id="ownedSkinCount">0 selected</span></div><p style="color:var(--muted);font-size:12px;line-height:1.6;margin-top:-5px">Select the skins you own. No Riot login or game connection is needed. Your selections are saved in this browser in this demo.</p><label class="field" for="skinSearch">Find a skin</label><input class="input" id="skinSearch" placeholder="Search by skin or weapon…"><div class="owned-skin-list" id="ownedSkinList"></div><div class="section-title" style="margin-top:22px"><h2>Favorite skins</h2><span>Choose from your owned skins</span></div><div class="owned-skin-list" id="favoriteSkinList"></div></div></div></div></section>
+  
+<section class="page" id="page-public-profile">
+  <div class="heading">
+    <div>
+      <div class="eyebrow">PLAYER SHOWCASE</div>
+      <h1><span id="publicPlayerName">Player</span><span style="color:var(--red)">.</span></h1>
+      <p id="publicPlayerHandle">@player · YOUR VAULT</p>
+    </div>
+    <button class="btn" id="copyPublicProfile" type="button">
+      Copy profile link
+    </button>
+  </div>
+
+  <div class="profile-grid">
+    <div class="profile-card">
+      <div class="profile-banner"></div>
+      <div class="profile-avatar" id="publicPlayerAvatar">P</div>
+      <h2 id="publicPlayerCardName">Player</h2>
+      <div class="handle" id="publicPlayerCardHandle">@player</div>
+      <p id="publicPlayerBio">Building a collection, one drop at a time.</p>
+
+      <div class="profile-numbers">
+        <div>
+          <strong id="publicUniqueCards">0</strong>
+          <small>UNIQUE CARDS</small>
+        </div>
+        <div>
+          <strong id="publicPlayerPacks">0</strong>
+          <small>PACKS OPENED</small>
+        </div>
+        <div>
+          <strong id="publicCompletion">0%</strong>
+          <small>COMPLETE</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="section-title">
+        <h2>Card collection</h2>
+        <span id="publicCardCount">0 cards</span>
+      </div>
+      <div class="collection-grid" id="publicCollectionGrid"></div>
+
+      <div class="section-title" style="margin-top:24px">
+        <h2>Favorite skins</h2>
+      </div>
+      <div id="publicFavoriteSkins" class="owned-skin-list"></div>
+
+      <p id="publicProfileMessage" role="status">
+        Loading player showcase...
+      </p>
+    </div>
+  </div>
+</section>
+
 </main><footer class="legal-footer"><strong>YOUR VAULT — independent fan project.</strong><br>YOUR VAULT is not affiliated with, endorsed by, sponsored by, or specifically approved by Riot Games, Inc. or VALORANT. All Riot Games, VALORANT names, logos, characters, and related marks are trademarks or registered trademarks of Riot Games, Inc. This fan project is unofficial. Any game-related names are used for identification only; original placeholder artwork is used in this prototype. See Riot Games’ Legal Jibber Jabber for applicable fan-project rules.</footer></div>
 <div class="modal-backdrop" id="modalBackdrop"><div class="modal"><div class="modal-head"><div><div class="eyebrow" id="modalEyebrow">Pack opened</div><h2 id="modalTitle">Look at those pulls.</h2></div><button class="close" id="closeModal" aria-label="Close">×</button></div><p id="modalDescription">Your new cards have been added to your collection.</p><div class="reveal-grid" id="revealGrid"></div><div class="modal-actions"><button class="btn secondary" id="skipReveal" type="button">Skip animation</button><button class="btn" id="modalDone" style="flex:1">Add to vault & continue</button></div></div></div><div class="toast" id="toast"></div>
 <script>
@@ -210,8 +266,31 @@ function renderProfile(){let n=state.name||'Your Player',h=(state.handle||'yourt
 function renderAll(){document.getElementById('creditCount').textContent=state.credits.toLocaleString();document.getElementById('statCards').textContent=uniqueCards();document.getElementById('statProgress').textContent=Math.round(uniqueCards()/CARDS.length*100)+'%';document.getElementById('statRarity').textContent=rarityBest();document.getElementById('statPacks').textContent=state.packs;document.getElementById('collectionUnique').textContent=`${uniqueCards()} / ${CARDS.length}`;document.getElementById('collectionTotal').textContent=totalCards();document.getElementById('collectionFoil').textContent=Object.values(state.inventory).reduce((n,v)=>n+v.Foil,0);document.getElementById('collectionHolo').textContent=Object.values(state.inventory).reduce((n,v)=>n+v.Holographic,0);renderPacks();renderCollection();renderProfile()}
 function showToast(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2600)}function openPack(id){let p=PACKS.find(p=>p.id===id);if(state.credits<p.price){showToast('Not enough credits for this pack.');return}state.credits-=p.price;pendingPulls=pickCards(p);document.getElementById('modalEyebrow').textContent=p.name+' · '+p.count+' cards';document.getElementById('modalTitle').textContent='Look at those pulls.';document.getElementById('modalDescription').textContent='Your cards are ready. Confirm to add every pull to your vault.';document.getElementById('revealGrid').classList.remove('no-animation');document.getElementById('revealGrid').innerHTML=pendingPulls.map((c,i)=>`<div class="reveal-card" style="--i:${i}">${cardHTML(c,c.edition,0)}</div>`).join('');document.getElementById('skipReveal').disabled=false;document.getElementById('skipReveal').textContent='Skip animation';document.getElementById('modalBackdrop').classList.add('show');document.getElementById('modalDone').textContent='Add to vault & continue';document.getElementById('modalDone').onclick=()=>{addPulls(pendingPulls);pendingPulls=[];document.getElementById('modalBackdrop').classList.remove('show');showToast('Cards added to your collection!')};document.getElementById('modalBackdrop').dataset.cost=p.price}
 document.getElementById('skipReveal').onclick=()=>{document.getElementById('revealGrid').classList.add('no-animation');document.getElementById('skipReveal').textContent='Animation skipped';document.getElementById('skipReveal').disabled=true};
-function switchPage(page){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'})}
-document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>switchPage(b.dataset.page)));document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>switchPage(b.dataset.goto)));document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{activeFilter=b.dataset.filter;renderCollection()}));document.getElementById('closeModal').onclick=()=>{let cost=Number(document.getElementById('modalBackdrop').dataset.cost||0);state.credits+=cost;save();pendingPulls=[];document.getElementById('modalBackdrop').classList.remove('show')};document.getElementById('modalBackdrop').addEventListener('click',e=>{if(e.target.id==='modalBackdrop')document.getElementById('closeModal').click()});document.getElementById('dailyBtn').onclick=()=>{let today=new Date().toISOString().slice(0,10);if(state.dailyClaim===today){showToast('Daily credits already claimed. Come back tomorrow!');return}state.dailyClaim=today;state.credits+=250;save();showToast('+250 daily credits claimed!')};document.getElementById('saveProfile').onclick=()=>{state.name=document.getElementById('displayName').value.trim()||'Your Player';state.handle=document.getElementById('handleInput').value.trim().replace(/^@/,'')||'yourtag';state.bio=document.getElementById('bioInput').value.trim();save();showToast('Profile saved on this device.')};document.querySelectorAll('[data-crosshair]').forEach(b=>b.addEventListener('click',()=>{state.crosshair=b.dataset.crosshair;renderProfile();showToast('Featured crosshair updated.')}));document.getElementById('resetBtn').onclick=()=>{if(confirm('Reset all demo credits, cards, and profile changes on this device?')){state=freshState();save();showToast('Demo reset.')}};
+function switchPage(page){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+page));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'})} 
+  
+const requestedPlayer = new URLSearchParams(window.location.search).get('player');
+
+if (requestedPlayer) {
+  loadPublicPlayer(requestedPlayer.replace(/^@/, ''));
+  switchPage('public-profile');
+}
+
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>switchPage(b.dataset.page)));document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>switchPage(b.dataset.goto)));document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{activeFilter=b.dataset.filter;renderCollection()}));document.getElementById('closeModal').onclick=()=>{let cost=Number(document.getElementById('modalBackdrop').dataset.cost||0);state.credits+=cost;save();pendingPulls=[];document.getElementById('modalBackdrop').classList.remove('show')};document.getElementById('modalBackdrop').addEventListener('click',e=>{if(e.target.id==='modalBackdrop')document.getElementById('closeModal').click()});document.getElementById('dailyBtn').onclick=()=>{let today=new Date().toISOString().slice(0,10);if(state.dailyClaim===today){showToast('Daily credits already claimed. Come back tomorrow!');return}state.dailyClaim=today;state.credits+=250;save();showToast('+250 daily credits claimed!')};document.getElementById('saveProfile').onclick=()=>{state.name=document.getElementById('displayName').value.trim()||'Your Player';state.handle=document.getElementById('handleInput').value.trim().replace(/^@/,'')||'yourtag';state.bio=document.getElementById('bioInput').value.trim();save();showToast('Profile saved on this device.')};document.querySelectorAll('[data-crosshair]').forEach(b=>b.addEventListener('click',()=>{state.crosshair=b.dataset.crosshair;renderProfile();showToast('Featured crosshair updated.')}));
+document.getElementById('saveProfile').onclick = async () => {
+  state.name = document.getElementById('displayName').value.trim() || 'Your Player';
+  state.handle = document.getElementById('handleInput').value.trim().replace(/^@/, '') || 'yourtag';
+  state.bio = document.getElementById('bioInput').value.trim();
+
+  save();
+
+  if (cloudSyncReady && cloudUserId) {
+    await saveVaultToCloud();
+    showToast('Profile saved and public showcase updated!');
+  } else {
+    showToast('Profile saved on this device. Log in to publish it.');
+  }
+};
+{if(confirm('Reset all demo credits, cards, and profile changes on this device?')){state=freshState();save();showToast('Demo reset.')}};
 document.getElementById('skinSearch')?.addEventListener('input',renderOwnedSkins);
 document.getElementById('importCrosshairBtn')?.addEventListener('click',()=>{const raw=document.getElementById('crosshairCodeInput').value.trim();if(!raw){showToast('Paste a crosshair code first.');return}if(!/^0;P;/.test(raw)){showToast('That does not look like a VALORANT crosshair code.');return}if(raw.length>2000){showToast('That code is too long to save.');return}state.crosshairCode=raw;save();showToast('Crosshair code saved to your vault.')});
 document.getElementById('copyCrosshairBtn')?.addEventListener('click',async()=>{if(!state.crosshairCode){showToast('Import a crosshair code first.');return}try{await navigator.clipboard.writeText(state.crosshairCode);showToast('Crosshair code copied.')}catch{document.getElementById('crosshairCodeInput').select();showToast('Code selected — press Ctrl+C to copy.')}});
@@ -316,8 +395,114 @@ const { data, error } = await supabaseClient.auth.signUp({
     if (error) {
       console.error('Cloud save failed:', error.message);
       showToast('Cloud save failed. Please try again.');
+      return;
+    }
+    await publishPlayerShowcase();
+  }
+
+  async function publishPlayerShowcase() {
+    if (!cloudUserId) return;
+
+    const showcaseData = {
+      inventory: state.inventory || {},
+      packs: state.packs || 0,
+      crosshair: state.crosshair || 'Classic',
+      ownedSkins: state.ownedSkins || [],
+      favoriteSkins: state.favoriteSkins || [],
+      collectionCount: uniqueCards(),
+      collectionPercent: Math.round(
+        uniqueCards() / CARDS.length * 100
+      )
+    };
+
+    const { error } = await supabaseClient
+      .from('player_showcases')
+      .upsert({
+        user_id: cloudUserId,
+        username: state.handle || 'yourtag',
+        display_name: state.name || 'Your Player',
+        bio: state.bio || '',
+        showcase_data: showcaseData,
+        updated_at: new Date().toISOString()
+      }, { onConflict: 'user_id' });
+
+    if (error) {
+      console.error('Public showcase update failed:', error.message);
+      showToast('Could not update your public profile.');
     }
   }
+
+  
+async function loadPublicPlayer(username) {
+  const message = document.getElementById('publicProfileMessage');
+  message.textContent = 'Loading player showcase...';
+
+  const { data, error } = await supabaseClient
+    .from('player_showcases')
+    .select('*')
+    .eq('username', username)
+    .maybeSingle();
+
+  if (error || !data) {
+    message.textContent = 'Player not found, or their showcase is not available yet.';
+    return;
+  }
+
+  const showcase = data.showcase_data || {};
+  const name = data.display_name || 'Your Player';
+  const handle = data.username || 'yourtag';
+  const inventory = showcase.inventory || {};
+  const uniqueCount = Object.values(inventory)
+    .reduce((total, editions) =>
+      total + Object.values(editions).filter(count => count > 0).length, 0);
+
+  document.getElementById('publicPlayerName').textContent = name;
+  document.getElementById('publicPlayerHandle').textContent = '@' + handle + ' · YOUR VAULT';
+  document.getElementById('publicPlayerCardName').textContent = name;
+  document.getElementById('publicPlayerCardHandle').textContent = '@' + handle;
+  document.getElementById('publicPlayerAvatar').textContent = name.charAt(0).toUpperCase();
+  document.getElementById('publicPlayerBio').textContent = data.bio || 'Building a collection, one drop at a time.';
+  document.getElementById('publicUniqueCards').textContent = showcase.collectionCount ?? uniqueCount;
+  document.getElementById('publicPlayerPacks').textContent = showcase.packs ?? 0;
+  document.getElementById('publicCompletion').textContent = (showcase.collectionPercent ?? 0) + '%';
+  document.getElementById('publicCardCount').textContent = uniqueCount + ' cards';
+
+  const grid = document.getElementById('publicCollectionGrid');
+  grid.innerHTML = '';
+
+  for (const [cardId, editions] of Object.entries(inventory)) {
+    for (const [edition, count] of Object.entries(editions)) {
+      if (count > 0) {
+        const card = document.createElement('div');
+        card.className = 'panel';
+        card.style.padding = '12px';
+        card.textContent = cardId + ' · ' + edition;
+        grid.appendChild(card);
+      }
+    }
+  }
+
+  const favorites = document.getElementById('publicFavoriteSkins');
+  favorites.innerHTML = '';
+
+  (showcase.favoriteSkins || []).forEach(skin => {
+    const item = document.createElement('div');
+    item.className = 'panel';
+    item.style.padding = '10px';
+    item.textContent = skin;
+    favorites.appendChild(item);
+  });
+
+  message.textContent = 'Player showcase loaded.';
+}
+
+document.getElementById('copyPublicProfile').onclick = async () => {
+  const url = new URL(window.location.href);
+  url.searchParams.set('player', document.getElementById('publicPlayerHandle').textContent.replace(/^@/, '').split(' ')[0]);
+  await navigator.clipboard.writeText(url.toString());
+  showToast('Public profile link copied!');
+};
+
 
   const originalVaultSave = save;
 
@@ -369,6 +554,7 @@ const { data, error } = await supabaseClient.auth.signUp({
     }
 
     cloudSyncReady = true;
+    await publishPlayerShowcase();
     showToast('Your vault is connected!');
   }
 
