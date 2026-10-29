@@ -252,10 +252,15 @@ themeToggle.addEventListener('click',()=>applyTheme(document.documentElement.dat
 
     message.textContent = "Creating your account...";
 
-    const { data, error } = await supabaseClient.auth.signUp({
-      email,
-      password
-    });
+    
+const { data, error } = await supabaseClient.auth.signUp({
+  email,
+  password,
+  options: {
+    emailRedirectTo: "https://rrvki.github.io/your-vault/"
+  }
+});
+
 
     if (error) {
       message.textContent = error.message;
