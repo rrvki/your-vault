@@ -295,6 +295,103 @@ const { data, error } = await supabaseClient.auth.signUp({
       : "You're logged in successfully!";
   });
 
+  // YOUR VAULT: Cloud saving
+  let cloudSyncReady = false;
+  let cloudSaveTimer = null;
+  let cloudUserId = null;
+
+  async function saveVaultToCloud() {
+    if (!cloudSyncReady || !cloudUserId) return;
+
+    const { error } = await supabaseClient
+      .from('profiles')
+      .update({
+        username: state.handle || 'yourtag',
+        display_name: state.name || 'Your Player',
+        bio: state.bio || '',
+        vault_data: state
+      })
+      .eq('id', cloudUserId);
+
+    if (error) {
+      console.error('Cloud save failed:', error.message);
+      showToast('Cloud save failed. Please try again.');
+    }
+  }
+
+  const originalVaultSave = save;
+
+  save = function () {
+    originalVaultSave();
+
+    if (cloudSyncReady && cloudUserId) {
+      clearTimeout(cloudSaveTimer);
+      cloudSaveTimer = setTimeout(saveVaultToCloud, 700);
+    }
+  };
+
+  async function loadVaultFromCloud(user) {
+    cloudSyncReady = false;
+    cloudUserId = user.id;
+
+    const { data, error } = await supabaseClient
+      .from('profiles')
+      .select('vault_data')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    if (error) {
+      console.error('Cloud load failed:', error.message);
+      showToast('Could not load your cloud vault.');
+      return;
+    }
+
+    if (data?.vault_data && Object.keys(data.vault_data).length > 0) {
+      state = { ...freshState(), ...data.vault_data };
+      localStorage.setItem(KEY, JSON.stringify(state));
+      renderAll();
+    } else {
+      const { error: saveError } = await supabaseClient
+        .from('profiles')
+        .update({
+          username: state.handle || 'yourtag',
+          display_name: state.name || 'Your Player',
+          bio: state.bio || '',
+          vault_data: state
+        })
+        .eq('id', user.id);
+
+      if (saveError) {
+        console.error('Initial cloud save failed:', saveError.message);
+        showToast('Could not save your vault yet.');
+        return;
+      }
+    }
+
+    cloudSyncReady = true;
+    showToast('Your vault is connected!');
+  }
+
+  supabaseClient.auth.onAuthStateChange((event, session) => {
+    if (session?.user) {
+      void loadVaultFromCloud(session.user);
+    } else {
+      cloudSyncReady = false;
+      cloudUserId = null;
+    }
+  });
+
+  supabaseClient.auth.getSession().then(({ data, error }) => {
+    if (error) {
+      console.error('Could not check login:', error.message);
+      return;
+    }
+
+    if (data.session?.user) {
+      void loadVaultFromCloud(data.session.user);
+    }
+  });
+
 </script>
 </body>
 </html>
